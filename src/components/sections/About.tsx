@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { bio, stats } from "../../config/portfolioConfig";
 import { Card } from "../ui/Card";
-import { SectionHeader } from "../ui/SectionHeader";
 
 export function About() {
   const hidden = { opacity: 0, y: 20 };
@@ -22,7 +21,6 @@ export function About() {
           maxWidth: "1100px",
           margin: "0 auto",
           padding: "0 20px",
-          minHeight: "fit-content", // Prevents overhang from previous screenshots
           display: "flex",
           alignItems: "center",
         }}
@@ -35,28 +33,30 @@ export function About() {
           style={{ width: "100%" }}
         >
           <Card>
-            <SectionHeader label="Who I Am" title="About Me" />
-
+            {/* The main layout container */}
             <div
               style={{
                 display: "grid",
                 gap: "48px",
                 width: "100%",
+                // This is the secret: it forces both columns to be exactly the same height
+                alignItems: "stretch", 
               }}
               className="grid-cols-1 md:grid-cols-[320px_1fr]"
             >
-              {/* --- LEFT: PHOTO --- */}
+              {/* LEFT COLUMN: The Photo */}
               <motion.div
                 initial={hidden}
                 whileInView={visible}
                 transition={{ duration: 0.7, delay: 0.2 }}
+                style={{ height: "100%" }}
               >
                 <img
                   src="/profilepic.jpg"
                   alt="Evan Boodoosingh"
                   style={{
                     width: "100%",
-                    aspectRatio: "3/4", // Keeps photo height consistent
+                    height: "100%", // Fills the grid cell height
                     borderRadius: "24px",
                     objectFit: "cover",
                     objectPosition: "top",
@@ -65,42 +65,66 @@ export function About() {
                 />
               </motion.div>
 
-              {/* --- RIGHT: THE FLEX COLUMN --- */}
+              {/* RIGHT COLUMN: The Text + Stats */}
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-between", // Anchors top and bottom items
-                  height: "100%", // Matches the height of the photo grid cell
-                  gap: "32px", // Fallback gap for mobile stacking
+                  // This spaces the Bio (top) and Stats (bottom) perfectly 
+                  // relative to the photo's top and bottom
+                  justifyContent: "space-between",
+                  height: "100%", 
                 }}
               >
-                {/* Top: Bio text */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                  {bio.paragraphs.map((paragraph, index) => (
-                    <motion.p
-                      key={index}
-                      initial={hidden}
-                      whileInView={visible}
-                      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                      style={{
-                        fontSize: "15px",
-                        lineHeight: "1.8",
-                        color: "rgba(255,255,255,0.6)",
-                        margin: 0,
-                      }}
-                    >
-                      {paragraph}
-                    </motion.p>
-                  ))}
+                {/* Text Group */}
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <span style={{ 
+                    fontSize: "10px", 
+                    fontWeight: 700, 
+                    letterSpacing: "3px", 
+                    color: "#c4622d", 
+                    textTransform: "uppercase",
+                    marginBottom: "8px"
+                  }}>
+                    Who I Am
+                  </span>
+                  <h2 style={{ 
+                    fontSize: "48px", 
+                    color: "#fff", 
+                    margin: "0 0 24px 0",
+                    fontFamily: "'Righteous', sans-serif",
+                    lineHeight: 1
+                  }}>
+                    About Me
+                  </h2>
+                  
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    {bio.paragraphs.map((paragraph, index) => (
+                      <motion.p
+                        key={index}
+                        initial={hidden}
+                        whileInView={visible}
+                        transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                        style={{
+                          fontSize: "15px",
+                          lineHeight: "1.7",
+                          color: "rgba(255,255,255,0.6)",
+                          margin: 0,
+                        }}
+                      >
+                        {paragraph}
+                      </motion.p>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Bottom: Stats Row */}
+                {/* Stats Row */}
                 <div
                   style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
                     gap: "16px",
+                    marginTop: "32px"
                   }}
                 >
                   {stats.map((stat, i) => (
@@ -110,7 +134,7 @@ export function About() {
                       whileInView={visible}
                       transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
                       style={{
-                        padding: "24px 16px",
+                        padding: "20px 12px",
                         borderRadius: "20px",
                         textAlign: "center",
                         background: "rgba(255,255,255,0.03)",
@@ -124,7 +148,7 @@ export function About() {
                           fontSize: "32px",
                           display: "block",
                           lineHeight: 1,
-                          marginBottom: "8px"
+                          marginBottom: "4px"
                         }}
                       >
                         {stat.value}
