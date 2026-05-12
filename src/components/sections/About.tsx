@@ -14,6 +14,8 @@ export function About() {
         zIndex: 2,
         padding: "80px clamp(24px, 4vw, 40px)",
         boxSizing: "border-box",
+        // Added scrollMarginTop to fix the navigation overlap issue
+        scrollMarginTop: "100px", 
       }}
     >
       <div
@@ -39,7 +41,7 @@ export function About() {
                 display: "grid",
                 gap: "48px",
                 width: "100%",
-                // This is the secret: it forces both columns to be exactly the same height
+                // Forces both columns to be the exact same height
                 alignItems: "stretch", 
               }}
               className="grid-cols-1 md:grid-cols-[320px_1fr]"
@@ -70,8 +72,7 @@ export function About() {
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  // This spaces the Bio (top) and Stats (bottom) perfectly 
-                  // relative to the photo's top and bottom
+                  // Spaces the Bio (top) and Stats (bottom) relative to photo
                   justifyContent: "space-between",
                   height: "100%", 
                 }}
