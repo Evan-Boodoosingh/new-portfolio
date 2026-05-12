@@ -19,7 +19,8 @@ export function Stack() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "0 20px",
+        padding: "120px clamp(24px, 4vw, 40px) 80px",
+        boxSizing: "border-box",
       }}
       className="md:px-10 lg:px-40"
     >
@@ -98,11 +99,12 @@ export function Stack() {
                           delay: groupIndex * 0.12 + itemIndex * 0.04,
                         }}
                         style={{
-                          padding: "8px 16px",
+                          padding:
+                            "clamp(6px, 2vw, 12px) clamp(10px, 3vw, 16px)",
                           borderRadius: "10px",
                           background: "rgba(255,255,255,0.04)",
                           border: "1px solid rgba(255,255,255,0.08)",
-                          fontSize: "12px",
+                          fontSize: "clamp(10px, 2.5vw, 12px)",
                           fontWeight: 500,
                           color: "#aaa",
                           letterSpacing: "0.5px",

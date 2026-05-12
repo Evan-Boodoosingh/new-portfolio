@@ -11,7 +11,15 @@ export function About() {
   const visible = { opacity: 1, y: 0 };
 
   return (
-    <section id="about" style={{ position: "relative", zIndex: 2 }}>
+    <section
+      id="about"
+      style={{
+        position: "relative",
+        zIndex: 2,
+        padding: "120px clamp(24px, 4vw, 40px) 80px",
+        boxSizing: "border-box",
+      }}
+    >
       <div
         style={{
           maxWidth: "1100px",
@@ -37,6 +45,7 @@ export function About() {
                 display: "grid",
                 gap: "32px",
                 alignItems: "start",
+                width: "100%",
               }}
               className="grid-cols-1 md:grid-cols-[280px_1fr] md:gap-14"
             >
@@ -98,9 +107,10 @@ export function About() {
                   transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
                     gap: "12px",
                     marginTop: "28px",
+                    width: "100%",
                   }}
                 >
                   {stats.map((stat, statIndex) => (

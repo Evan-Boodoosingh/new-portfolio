@@ -16,16 +16,27 @@ export function Hero() {
       id="hero"
       style={{
         minHeight: "100vh",
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "120px 20px 80px",
+        padding: "120px clamp(24px, 4vw, 40px) 80px",
         position: "relative",
         textAlign: "center",
+        boxSizing: "border-box",
       }}
       className="md:px-10 lg:px-40"
     >
-      <div style={{ maxWidth: "900px", width: "100%" }}>
+      <div
+        style={{
+          maxWidth: "900px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         {/* Available for Work pill - matches nav styling */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -59,7 +70,7 @@ export function Hero() {
           />
           <span
             style={{
-              fontSize: "12px",
+              fontSize: "clamp(10px, 1.4vw, 12px)",
               fontWeight: 600,
               letterSpacing: "3px",
               textTransform: "uppercase",
@@ -78,10 +89,11 @@ export function Hero() {
           viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           style={{
-            fontSize: "clamp(64px, 12vw, 140px)",
+            fontSize: "clamp(42px, 10vw, 92px)",
             letterSpacing: "2px",
             lineHeight: 1.05,
-            marginBottom: "32px",
+            margin: "0 auto 32px",
+            maxWidth: "min(100%, 760px)",
             paddingBottom: "8px",
             WebkitTextStroke: ".3px #555",
             paintOrder: "stroke fill",
@@ -105,14 +117,21 @@ export function Hero() {
             WebkitBackdropFilter: "blur(24px)",
             border: "1px solid rgba(255,255,255,0.1)",
             borderRadius: "20px",
-            padding: "24px 40px",
+            padding: "clamp(20px, 3vw, 30px)",
             marginBottom: "40px",
-            display: "inline-block",
+            width: "100%",
+            maxWidth: "min(520px, 90vw)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
           <p
             style={{
-              fontSize: "18px",
+              fontSize: "clamp(14px, 2vw, 18px)",
               fontWeight: 300,
               color: "#ffffff",
               letterSpacing: "6px",
@@ -124,7 +143,7 @@ export function Hero() {
           </p>
           <p
             style={{
-              fontSize: "15px",
+              fontSize: "clamp(13px, 1.4vw, 15px)",
               color: "#aaa",
               lineHeight: 1.8,
               maxWidth: "520px",
@@ -145,7 +164,11 @@ export function Hero() {
             display: "flex",
             gap: "16px",
             justifyContent: "center",
+            alignItems: "center",
             flexWrap: "wrap",
+            width: "100%",
+            maxWidth: "520px",
+            margin: "0 auto",
           }}
           className="flex-col sm:flex-row gap-4 sm:gap-16"
         >

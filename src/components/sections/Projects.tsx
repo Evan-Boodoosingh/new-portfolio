@@ -92,7 +92,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       className="grid-cols-1 md:grid-cols-2"
     >
       {/* Video panel */}
-      <div style={{ order: isEven ? 0 : 1 }}>
+      <div className={isEven ? "order-0 md:order-0" : "order-0 md:order-1"}>
         {project.videoUrl ? (
           <iframe
             src={project.videoUrl}
@@ -130,18 +130,18 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
       {/* Info panel */}
       <div
+        className={isEven ? "order-1 md:order-1" : "order-1 md:order-0"}
         style={{
-          padding: "40px 48px",
+          padding: "clamp(20px, 3vw, 32px)",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          order: isEven ? 1 : 0,
         }}
       >
         <h3
           style={{
             fontFamily: "'Righteous', sans-serif",
-            fontSize: "24px",
+            fontSize: "clamp(18px, 4vw, 22px)",
             color: "#f0f0f0",
             marginBottom: "12px",
             lineHeight: 1.2,
@@ -152,7 +152,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
         <p
           style={{
-            fontSize: "15px",
+            fontSize: "clamp(13px, 2vw, 15px)",
             color: "#888",
             lineHeight: 1.7,
             marginBottom: "20px",
@@ -189,20 +189,20 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           ))}
         </div>
 
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div style={{ display: "flex", gap: "clamp(8px, 2vw, 12px)" }}>
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                fontSize: "11px",
+                fontSize: "clamp(10px, 2vw, 11px)",
                 fontWeight: 600,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "#aaa",
                 textDecoration: "none",
-                padding: "10px 24px",
+                padding: "clamp(8px, 2vw, 10px) clamp(16px, 3vw, 24px)",
                 borderRadius: "100px",
                 border: "1px solid rgba(255,255,255,0.12)",
                 transition: "all 0.2s",
@@ -219,13 +219,13 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                fontSize: "11px",
+                fontSize: "clamp(10px, 2vw, 11px)",
                 fontWeight: 600,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "#aaa",
                 textDecoration: "none",
-                padding: "10px 24px",
+                padding: "clamp(8px, 2vw, 10px) clamp(16px, 3vw, 24px)",
                 borderRadius: "100px",
                 border: "1px solid rgba(255,255,255,0.12)",
                 transition: "all 0.2s",
@@ -244,13 +244,21 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
 export function Projects() {
   return (
-    <section id="projects" style={{ position: "relative", zIndex: 2 }}>
+    <section
+      id="projects"
+      style={{
+        position: "relative",
+        zIndex: 2,
+        padding: "120px clamp(24px, 4vw, 40px) 80px",
+        boxSizing: "border-box",
+      }}
+    >
       <div
         style={{
           maxWidth: "1100px",
           margin: "0 auto",
           width: "100%",
-          padding: "60px 40px",
+          padding: "clamp(32px, 4vw, 60px)",
         }}
       >
         <div style={{ marginBottom: "48px" }}>

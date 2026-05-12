@@ -2,8 +2,8 @@
 // Renders a small rainbow label above a large white title
 
 interface SectionHeaderProps {
-  label: string  // small uppercase label e.g. "Who I Am"
-  title: string  // large section title e.g. "About Me"
+  label: string; // small uppercase label e.g. "Who I Am"
+  title: string; // large section title e.g. "About Me"
 }
 
 export function SectionHeader({ label, title }: SectionHeaderProps) {
@@ -12,11 +12,11 @@ export function SectionHeader({ label, title }: SectionHeaderProps) {
       {/* Small gradient label */}
       <p
         style={{
-          fontSize: "10px",
+          fontSize: "clamp(10px, 1.2vw, 12px)",
           fontWeight: 500,
           letterSpacing: "5px",
           textTransform: "uppercase",
-          marginBottom: "8px",
+          marginBottom: "clamp(8px, 1.2vw, 12px)",
           background: "linear-gradient(90deg, #ff2d78, #d500f9)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
@@ -39,5 +39,5 @@ export function SectionHeader({ label, title }: SectionHeaderProps) {
         {title}
       </h2>
     </div>
-  )
+  );
 }

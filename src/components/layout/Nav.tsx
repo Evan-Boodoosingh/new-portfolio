@@ -108,8 +108,8 @@ export function Nav() {
           onClick={() => setIsOpen(true)}
           style={{
             position: "fixed",
-            top: "10px",
-            right: "10px",
+            top: "15px",
+            right: "15px",
             zIndex: 250,
             background: "none",
             border: "none",
