@@ -16,11 +16,12 @@ export function About() {
         style={{
           maxWidth: "1100px",
           margin: "0 auto",
-          padding: "0 40px",
+          padding: "0 20px",
           minHeight: "100vh",
           display: "flex",
           alignItems: "center",
         }}
+        className="md:px-10 lg:px-40"
       >
         <motion.div
           initial={hidden}
@@ -34,11 +35,10 @@ export function About() {
             <div
               style={{
                 display: "grid",
-                // Single column on mobile, photo + text on desktop
-                gridTemplateColumns: "280px 1fr",
-                gap: "56px",
+                gap: "32px",
                 alignItems: "start",
               }}
+              className="grid-cols-1 md:grid-cols-[280px_1fr] md:gap-14"
             >
               {/* Photo with rainbow border */}
               <motion.div
@@ -74,7 +74,11 @@ export function About() {
                     initial={hidden}
                     whileInView={visible}
                     viewport={{ once: false, amount: 0.1 }}
-                    transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 + index * 0.05 }}
+                    transition={{
+                      duration: 0.55,
+                      ease: "easeOut",
+                      delay: 0.25 + index * 0.05,
+                    }}
                     style={{
                       fontSize: "15px",
                       lineHeight: 1.85,
@@ -105,7 +109,11 @@ export function About() {
                       initial={hidden}
                       whileInView={visible}
                       viewport={{ once: false, amount: 0.1 }}
-                      transition={{ duration: 0.55, ease: "easeOut", delay: 0.4 + statIndex * 0.05 }}
+                      transition={{
+                        duration: 0.55,
+                        ease: "easeOut",
+                        delay: 0.4 + statIndex * 0.05,
+                      }}
                       style={{
                         padding: "20px 12px",
                         borderRadius: "14px",

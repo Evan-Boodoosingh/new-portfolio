@@ -19,10 +19,11 @@ export function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "120px 40px 80px",
+        padding: "120px 20px 80px",
         position: "relative",
         textAlign: "center",
       }}
+      className="md:px-10 lg:px-40"
     >
       <div style={{ maxWidth: "900px", width: "100%" }}>
         {/* Available for Work pill - matches nav styling */}
@@ -69,13 +70,13 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Name - large, centered, rainbow gradient with white glow */}
+        {/* Name - large, centered, plain white version for comparison */}
         <motion.h1
-          className="rainbow-text"
+          /* className="rainbow-text" */
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           style={{
             fontSize: "clamp(64px, 12vw, 140px)",
             letterSpacing: "2px",
@@ -84,6 +85,7 @@ export function Hero() {
             paddingBottom: "8px",
             WebkitTextStroke: ".3px #555",
             paintOrder: "stroke fill",
+            color: "#fff",
           }}
         >
           {personalInfo.name.split(" ")[0]}
@@ -145,6 +147,7 @@ export function Hero() {
             justifyContent: "center",
             flexWrap: "wrap",
           }}
+          className="flex-col sm:flex-row gap-4 sm:gap-16"
         >
           <RainbowButton onClick={() => scrollTo("projects")}>
             Explore My Work

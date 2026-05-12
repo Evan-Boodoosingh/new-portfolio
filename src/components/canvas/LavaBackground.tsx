@@ -74,7 +74,7 @@ export function LavaBackground() {
         y: START_POSITIONS[i][1],
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        sizeRatio: 0.58 + Math.random() * 0.22,
+        sizeRatio: 0.27 + Math.random() * 0.33,
         color,
         phase: Math.random() * Math.PI * 2,
         pulseSpeed: 0.4 + Math.random() * 0.4,

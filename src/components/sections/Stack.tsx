@@ -1,14 +1,14 @@
 // Stack section — tech skills organized by category
 // Each group animates in from the left with a stagger between groups
 
-import { motion } from "framer-motion"
-import { stack } from "../../config/portfolioConfig"
-import { Card } from "../ui/Card"
-import { SectionHeader } from "../ui/SectionHeader"
+import { motion } from "framer-motion";
+import { stack } from "../../config/portfolioConfig";
+import { Card } from "../ui/Card";
+import { SectionHeader } from "../ui/SectionHeader";
 
 export function Stack() {
-  const groupHidden = { opacity: 0, y: 40 }
-  const pillHidden = { opacity: 0, scale: 0.85, y: 10 }
+  const groupHidden = { opacity: 0, y: 40 };
+  const pillHidden = { opacity: 0, scale: 0.85, y: 10 };
 
   return (
     <section
@@ -19,8 +19,9 @@ export function Stack() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "0 40px",
+        padding: "0 20px",
       }}
+      className="md:px-10 lg:px-40"
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
         <motion.div
@@ -35,9 +36,9 @@ export function Stack() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "40px",
+                gap: "32px",
               }}
+              className="grid-cols-1 md:grid-cols-2 md:gap-10"
             >
               {stack.map((group, groupIndex) => (
                 <motion.div
@@ -70,12 +71,20 @@ export function Stack() {
                       style={{
                         flex: 1,
                         height: "1px",
-                        background: "linear-gradient(90deg, rgba(255,45,120,0.3), transparent)",
+                        background:
+                          "linear-gradient(90deg, rgba(255,45,120,0.3), transparent)",
                       }}
                     />
                   </div>
 
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "28px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "8px",
+                      marginBottom: "28px",
+                    }}
+                  >
                     {group.items.map((item, itemIndex) => (
                       <motion.span
                         key={item.name}
@@ -112,5 +121,5 @@ export function Stack() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

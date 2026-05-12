@@ -3,34 +3,57 @@
 // Odd index: video right, card slides in from right
 // once: false means animation replays when scrolling back
 
-import { motion } from "framer-motion"
-import { projects } from "../../config/portfolioConfig"
-import type { Project } from "../../types"
+import { motion } from "framer-motion";
+import { projects } from "../../config/portfolioConfig";
+import type { Project } from "../../types";
 
-const TAG_COLORS: Record<string, { bg: string; color: string; border: string }> = {
-  pink:   { bg: "rgba(255,45,120,0.12)",  color: "#ff2d78", border: "rgba(255,45,120,0.25)"  },
-  blue:   { bg: "rgba(0,176,255,0.12)",   color: "#00b0ff", border: "rgba(0,176,255,0.25)"   },
-  green:  { bg: "rgba(0,200,100,0.12)",   color: "#00e676", border: "rgba(0,200,100,0.25)"   },
-  purple: { bg: "rgba(213,0,249,0.12)",   color: "#d500f9", border: "rgba(213,0,249,0.25)"   },
-  orange: { bg: "rgba(255,149,0,0.12)",   color: "#ff9500", border: "rgba(255,149,0,0.25)"   },
-}
+const TAG_COLORS: Record<
+  string,
+  { bg: string; color: string; border: string }
+> = {
+  pink: {
+    bg: "rgba(255,45,120,0.12)",
+    color: "#ff2d78",
+    border: "rgba(255,45,120,0.25)",
+  },
+  blue: {
+    bg: "rgba(0,176,255,0.12)",
+    color: "#00b0ff",
+    border: "rgba(0,176,255,0.25)",
+  },
+  green: {
+    bg: "rgba(0,200,100,0.12)",
+    color: "#00e676",
+    border: "rgba(0,200,100,0.25)",
+  },
+  purple: {
+    bg: "rgba(213,0,249,0.12)",
+    color: "#d500f9",
+    border: "rgba(213,0,249,0.25)",
+  },
+  orange: {
+    bg: "rgba(255,149,0,0.12)",
+    color: "#ff9500",
+    border: "rgba(255,149,0,0.25)",
+  },
+};
 
 function handleLinkEnter(e: React.MouseEvent<HTMLAnchorElement>) {
-  e.currentTarget.style.borderColor = "#ff2d78"
-  e.currentTarget.style.color = "#ff2d78"
+  e.currentTarget.style.borderColor = "#ff2d78";
+  e.currentTarget.style.color = "#ff2d78";
 }
 
 function handleLinkLeave(e: React.MouseEvent<HTMLAnchorElement>) {
-  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"
-  e.currentTarget.style.color = "#aaa"
+  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+  e.currentTarget.style.color = "#aaa";
 }
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
-  const isEven = index % 2 === 0
-  const tagStyle = TAG_COLORS[project.tagColor]
+  const isEven = index % 2 === 0;
+  const tagStyle = TAG_COLORS[project.tagColor];
 
   // Direction based on layout — even slides from left, odd slides from right
-  const xOffset = isEven ? -120 : 120
+  const xOffset = isEven ? -120 : 120;
 
   const variants = {
     hidden: {
@@ -48,7 +71,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         delay: index * 0.05,
       },
     },
-  }
+  };
 
   return (
     <motion.div
@@ -64,16 +87,22 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         border: "1px solid rgba(255,255,255,0.08)",
         overflow: "hidden",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
         marginBottom: "24px",
       }}
+      className="grid-cols-1 md:grid-cols-2"
     >
       {/* Video panel */}
       <div style={{ order: isEven ? 0 : 1 }}>
         {project.videoUrl ? (
           <iframe
             src={project.videoUrl}
-            style={{ width: "100%", height: "100%", minHeight: "300px", border: "none", display: "block" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              minHeight: "300px",
+              border: "none",
+              display: "block",
+            }}
             allowFullScreen
             title={project.name}
           />
@@ -83,7 +112,8 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
               width: "100%",
               height: "100%",
               minHeight: "300px",
-              background: "linear-gradient(135deg,rgba(255,45,120,0.08),rgba(0,176,255,0.08))",
+              background:
+                "linear-gradient(135deg,rgba(255,45,120,0.08),rgba(0,176,255,0.08))",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -120,12 +150,26 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           {project.name}
         </h3>
 
-        <p style={{ fontSize: "15px", color: "#888", lineHeight: 1.7, marginBottom: "20px" }}>
+        <p
+          style={{
+            fontSize: "15px",
+            color: "#888",
+            lineHeight: 1.7,
+            marginBottom: "20px",
+          }}
+        >
           {project.description}
         </p>
 
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "28px" }}>
-          {project.tags.map(tag => (
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            flexWrap: "wrap",
+            marginBottom: "28px",
+          }}
+        >
+          {project.tags.map((tag) => (
             <span
               key={tag}
               style={{
@@ -195,13 +239,20 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
 
 export function Projects() {
   return (
     <section id="projects" style={{ position: "relative", zIndex: 2 }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%", padding: "60px 40px" }}>
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          width: "100%",
+          padding: "60px 40px",
+        }}
+      >
         <div style={{ marginBottom: "48px" }}>
           <p
             style={{
@@ -236,5 +287,5 @@ export function Projects() {
         ))}
       </div>
     </section>
-  )
+  );
 }

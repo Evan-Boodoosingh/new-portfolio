@@ -87,8 +87,9 @@ export function Contact() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "0 40px",
+        padding: "0 20px",
       }}
+      className="md:px-10 lg:px-40"
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
         <Card>
@@ -97,10 +98,10 @@ export function Contact() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "56px",
+              gap: "32px",
               alignItems: "start",
             }}
+            className="grid-cols-1 md:grid-cols-2 md:gap-14"
           >
             {/* LEFT — form slides in from left and exits back left */}
             <motion.div
