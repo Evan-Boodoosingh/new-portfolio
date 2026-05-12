@@ -1,13 +1,10 @@
-// About section — bio, photo, and stats
-// Photo on left, text on right, stats row at the bottom
-
 import { motion } from "framer-motion";
 import { bio, stats } from "../../config/portfolioConfig";
 import { Card } from "../ui/Card";
 import { SectionHeader } from "../ui/SectionHeader";
 
 export function About() {
-  const hidden = { opacity: 0, y: 32 };
+  const hidden = { opacity: 0, y: 20 };
   const visible = { opacity: 1, y: 0 };
 
   return (
@@ -16,7 +13,7 @@ export function About() {
       style={{
         position: "relative",
         zIndex: 2,
-        padding: "120px clamp(24px, 4vw, 40px) 80px",
+        padding: "80px clamp(24px, 4vw, 40px)",
         boxSizing: "border-box",
       }}
     >
@@ -25,17 +22,17 @@ export function About() {
           maxWidth: "1100px",
           margin: "0 auto",
           padding: "0 20px",
-          minHeight: "100vh",
+          minHeight: "fit-content", // Prevents overhang from previous screenshots
           display: "flex",
           alignItems: "center",
         }}
-        className="md:px-10 lg:px-40"
       >
         <motion.div
           initial={hidden}
           whileInView={visible}
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
+          style={{ width: "100%" }}
         >
           <Card>
             <SectionHeader label="Who I Am" title="About Me" />
@@ -43,93 +40,81 @@ export function About() {
             <div
               style={{
                 display: "grid",
-                gap: "32px",
-                alignItems: "start",
+                gap: "48px",
                 width: "100%",
               }}
-              className="grid-cols-1 md:grid-cols-[280px_1fr] md:gap-14"
+              className="grid-cols-1 md:grid-cols-[320px_1fr]"
             >
-              {/* Photo with rainbow border */}
+              {/* --- LEFT: PHOTO --- */}
               <motion.div
                 initial={hidden}
                 whileInView={visible}
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
               >
                 <img
                   src="/profilepic.jpg"
                   alt="Evan Boodoosingh"
                   style={{
                     width: "100%",
-                    aspectRatio: "3/4",
-                    borderRadius: "20px",
+                    aspectRatio: "3/4", // Keeps photo height consistent
+                    borderRadius: "24px",
                     objectFit: "cover",
                     objectPosition: "top",
-                    border: "2px solid rgba(255,255,255,0.08)",
+                    border: "1px solid rgba(255,255,255,0.1)",
                   }}
                 />
               </motion.div>
 
-              {/* Bio text + stats */}
-              <motion.div
-                initial={hidden}
-                whileInView={visible}
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+              {/* --- RIGHT: THE FLEX COLUMN --- */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between", // Anchors top and bottom items
+                  height: "100%", // Matches the height of the photo grid cell
+                  gap: "32px", // Fallback gap for mobile stacking
+                }}
               >
-                {bio.paragraphs.map((paragraph, index) => (
-                  <motion.p
-                    key={index}
-                    initial={hidden}
-                    whileInView={visible}
-                    viewport={{ once: false, amount: 0.1 }}
-                    transition={{
-                      duration: 0.55,
-                      ease: "easeOut",
-                      delay: 0.25 + index * 0.05,
-                    }}
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: 1.85,
-                      color: "#aaa",
-                      marginBottom: "16px",
-                    }}
-                  >
-                    {paragraph}
-                  </motion.p>
-                ))}
+                {/* Top: Bio text */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                  {bio.paragraphs.map((paragraph, index) => (
+                    <motion.p
+                      key={index}
+                      initial={hidden}
+                      whileInView={visible}
+                      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                      style={{
+                        fontSize: "15px",
+                        lineHeight: "1.8",
+                        color: "rgba(255,255,255,0.6)",
+                        margin: 0,
+                      }}
+                    >
+                      {paragraph}
+                    </motion.p>
+                  ))}
+                </div>
 
-                {/* Stats row */}
-                <motion.div
-                  initial={hidden}
-                  whileInView={visible}
-                  viewport={{ once: false, amount: 0.1 }}
-                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
+                {/* Bottom: Stats Row */}
+                <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                    gap: "12px",
-                    marginTop: "28px",
-                    width: "100%",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+                    gap: "16px",
                   }}
                 >
-                  {stats.map((stat, statIndex) => (
+                  {stats.map((stat, i) => (
                     <motion.div
                       key={stat.label}
                       initial={hidden}
                       whileInView={visible}
-                      viewport={{ once: false, amount: 0.1 }}
-                      transition={{
-                        duration: 0.55,
-                        ease: "easeOut",
-                        delay: 0.4 + statIndex * 0.05,
-                      }}
+                      transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
                       style={{
-                        padding: "20px 12px",
-                        borderRadius: "14px",
+                        padding: "24px 16px",
+                        borderRadius: "20px",
                         textAlign: "center",
-                        border: "1px solid rgba(255,255,255,0.08)",
                         background: "rgba(255,255,255,0.03)",
+                        border: "1px solid rgba(255,255,255,0.08)",
                       }}
                     >
                       <span
@@ -138,6 +123,8 @@ export function About() {
                           fontFamily: "'Righteous', sans-serif",
                           fontSize: "32px",
                           display: "block",
+                          lineHeight: 1,
+                          marginBottom: "8px"
                         }}
                       >
                         {stat.value}
@@ -145,20 +132,18 @@ export function About() {
                       <span
                         style={{
                           fontSize: "10px",
-                          fontWeight: 500,
+                          fontWeight: 700,
                           letterSpacing: "2px",
-                          color: "#aaa",
+                          color: "rgba(255,255,255,0.4)",
                           textTransform: "uppercase",
-                          display: "block",
-                          marginTop: "4px",
                         }}
                       >
                         {stat.label}
                       </span>
                     </motion.div>
                   ))}
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </Card>
         </motion.div>
