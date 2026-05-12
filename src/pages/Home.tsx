@@ -9,7 +9,8 @@ import { About } from "../components/sections/About"
 import { Projects } from "../components/sections/Projects"
 import { Stack } from "../components/sections/Stack"
 import { Contact } from "../components/sections/Contact"
-import { RainbowBar } from "../components/ui/RainbowBar"
+// import { RainbowBar } from "../components/ui/RainbowBar"
+// import { RainbowBar } from "../components/ui/RainbowBar"
 
 export function Home() {
   return (
@@ -23,13 +24,13 @@ export function Home() {
       {/* Main content — z-index 2 keeps it above the canvas */}
       <main style={{ position: "relative", zIndex: 2 }}>
         <Hero />
-        <RainbowBar />
+        {/* <RainbowBar /> */}
         <About />
-        <RainbowBar />
+        {/* <RainbowBar /> */}
         <Projects />
-        <RainbowBar />
+        {/* <RainbowBar /> */}
         <Stack />
-        <RainbowBar />
+        {/* <RainbowBar /> */}
         <Contact />
       </main>
 

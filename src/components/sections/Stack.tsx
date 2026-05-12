@@ -1,31 +1,41 @@
-// Stack section — displays tech skills organized by category
-// Pulls all stack data from portfolioConfig
+// Stack section — tech skills organized by category
+// Each group animates in from the left with a stagger between groups
 
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { stack } from "../../config/portfolioConfig"
 import { Card } from "../ui/Card"
 import { SectionHeader } from "../ui/SectionHeader"
-import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
 export function Stack() {
-  const { ref, isInView, variants } = useScrollAnimation()
+  const ref = useRef(null)
+  const isInView = useInView(ref, {
+    once: false,
+    margin: "0px 0px -80px 0px",
+  })
 
   return (
-    <section id="stack" style={{ position: "relative", zIndex: 2 }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px",
-minHeight: "100vh",
-display: "flex",
-alignItems: "center", }}>
+    <section
+      id="stack"
+      style={{
+        position: "relative",
+        zIndex: 2,
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        padding: "0 40px",
+      }}
+    >
+      <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
         <motion.div
           ref={ref}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={variants}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.6, ease: "easeOut" as const }}
         >
           <Card>
             <SectionHeader label="What I Use" title="Tech Stack" />
 
-            {/* Two column layout — languages/frontend left, backend/tools right */}
             <div
               style={{
                 display: "grid",
@@ -33,9 +43,18 @@ alignItems: "center", }}>
                 gap: "40px",
               }}
             >
-              {stack.map(group => (
-                <div key={group.title}>
-                  {/* Group title with rainbow underline */}
+              {stack.map((group, groupIndex) => (
+                <motion.div
+                  key={group.title}
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut" as const,
+                    // Each group staggers in after the previous
+                    delay: groupIndex * 0.12,
+                  }}
+                >
                   <div
                     style={{
                       fontSize: "10px",
@@ -54,17 +73,23 @@ alignItems: "center", }}>
                       style={{
                         flex: 1,
                         height: "1px",
-                        background:
-                          "linear-gradient(90deg, rgba(255,45,120,0.3), transparent)",
+                        background: "linear-gradient(90deg, rgba(255,45,120,0.3), transparent)",
                       }}
                     />
                   </div>
 
-                  {/* Skill pills */}
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "28px" }}>
-                    {group.items.map(item => (
-                      <span
+                    {group.items.map((item, itemIndex) => (
+                      <motion.span
                         key={item.name}
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+                        transition={{
+                          duration: 0.3,
+                          ease: "easeOut" as const,
+                          // Pills stagger in after their group
+                          delay: groupIndex * 0.12 + itemIndex * 0.04,
+                        }}
                         style={{
                           padding: "8px 16px",
                           borderRadius: "10px",
@@ -74,27 +99,15 @@ alignItems: "center", }}>
                           fontWeight: 500,
                           color: "#aaa",
                           letterSpacing: "0.5px",
-                          transition: "all 0.2s",
                           cursor: "default",
-                        }}
-                        onMouseEnter={e => {
-                          const el = e.currentTarget as HTMLSpanElement
-                          el.style.borderColor = "rgba(255,45,120,0.3)"
-                          el.style.color = "#f0f0f0"
-                          el.style.background = "rgba(255,45,120,0.06)"
-                        }}
-                        onMouseLeave={e => {
-                          const el = e.currentTarget as HTMLSpanElement
-                          el.style.borderColor = "rgba(255,255,255,0.08)"
-                          el.style.color = "#aaa"
-                          el.style.background = "rgba(255,255,255,0.04)"
+                          display: "inline-block",
                         }}
                       >
                         {item.name}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </Card>
