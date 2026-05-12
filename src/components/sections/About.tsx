@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { bio, stats } from "../../config/portfolioConfig";
 import { Card } from "../ui/Card";
 import { SectionHeader } from "../ui/SectionHeader";
-import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 
 export function About() {
-  const { ref, isInView, variants } = useScrollAnimation();
+  const hidden = { opacity: 0, y: 32 };
+  const visible = { opacity: 1, y: 0 };
 
   return (
     <section id="about" style={{ position: "relative", zIndex: 2 }}>
@@ -23,10 +23,10 @@ export function About() {
         }}
       >
         <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={variants}
+          initial={hidden}
+          whileInView={visible}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <Card>
             <SectionHeader label="Who I Am" title="About Me" />
@@ -41,24 +41,40 @@ export function About() {
               }}
             >
               {/* Photo with rainbow border */}
-              <img
-                src="/profilepic.jpg"
-                alt="Evan Boodoosingh"
-                style={{
-                  width: "100%",
-                  aspectRatio: "3/4",
-                  borderRadius: "20px",
-                  objectFit: "cover",
-                  objectPosition: "top",
-                  border: "2px solid rgba(255,255,255,0.08)",
-                }}
-              />
+              <motion.div
+                initial={hidden}
+                whileInView={visible}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+              >
+                <img
+                  src="/profilepic.jpg"
+                  alt="Evan Boodoosingh"
+                  style={{
+                    width: "100%",
+                    aspectRatio: "3/4",
+                    borderRadius: "20px",
+                    objectFit: "cover",
+                    objectPosition: "top",
+                    border: "2px solid rgba(255,255,255,0.08)",
+                  }}
+                />
+              </motion.div>
 
               {/* Bio text + stats */}
-              <div>
+              <motion.div
+                initial={hidden}
+                whileInView={visible}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+              >
                 {bio.paragraphs.map((paragraph, index) => (
-                  <p
+                  <motion.p
                     key={index}
+                    initial={hidden}
+                    whileInView={visible}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 + index * 0.05 }}
                     style={{
                       fontSize: "15px",
                       lineHeight: 1.85,
@@ -67,11 +83,15 @@ export function About() {
                     }}
                   >
                     {paragraph}
-                  </p>
+                  </motion.p>
                 ))}
 
                 {/* Stats row */}
-                <div
+                <motion.div
+                  initial={hidden}
+                  whileInView={visible}
+                  viewport={{ once: false, amount: 0.1 }}
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
                   style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(3, 1fr)",
@@ -79,9 +99,13 @@ export function About() {
                     marginTop: "28px",
                   }}
                 >
-                  {stats.map((stat) => (
-                    <div
+                  {stats.map((stat, statIndex) => (
+                    <motion.div
                       key={stat.label}
+                      initial={hidden}
+                      whileInView={visible}
+                      viewport={{ once: false, amount: 0.1 }}
+                      transition={{ duration: 0.55, ease: "easeOut", delay: 0.4 + statIndex * 0.05 }}
                       style={{
                         padding: "20px 12px",
                         borderRadius: "14px",
@@ -113,10 +137,10 @@ export function About() {
                       >
                         {stat.label}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </Card>
         </motion.div>

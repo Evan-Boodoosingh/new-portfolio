@@ -1,6 +1,7 @@
 // Hero section — centered, full viewport, no photo
 // Name enlarged and centered, available pill matches nav styling
 
+import { motion } from "framer-motion";
 import { personalInfo } from "../../config/portfolioConfig";
 import { RainbowButton } from "../ui/RainbowButton";
 
@@ -25,7 +26,11 @@ export function Hero() {
     >
       <div style={{ maxWidth: "900px", width: "100%" }}>
         {/* Available for Work pill - matches nav styling */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -38,8 +43,6 @@ export function Hero() {
             border: "1px solid rgba(255,255,255,0.1)",
             boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
             marginBottom: "40px",
-            opacity: 0,
-            animation: "fadeUp 0.8s 0.1s forwards",
           }}
         >
           <div
@@ -64,30 +67,36 @@ export function Hero() {
           >
             Available for Work
           </span>
-        </div>
+        </motion.div>
 
         {/* Name - large, centered, rainbow gradient with white glow */}
-        <h1
+        <motion.h1
           className="rainbow-text"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
           style={{
             fontSize: "clamp(64px, 12vw, 140px)",
             letterSpacing: "2px",
             lineHeight: 1.05,
             marginBottom: "32px",
             paddingBottom: "8px",
-            opacity: 0,
-            animation: "fadeUp 0.8s 0.3s forwards",
             WebkitTextStroke: ".3px #555",
-paintOrder: "stroke fill",
+            paintOrder: "stroke fill",
           }}
         >
           {personalInfo.name.split(" ")[0]}
           <br />
           {personalInfo.name.split(" ")[1]}
-        </h1>
+        </motion.h1>
 
         {/* Frosted card behind role and tagline */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
           style={{
             background: "rgba(15,15,15,0.75)",
             backdropFilter: "blur(24px)",
@@ -97,8 +106,6 @@ paintOrder: "stroke fill",
             padding: "24px 40px",
             marginBottom: "40px",
             display: "inline-block",
-            opacity: 0,
-            animation: "fadeUp 0.8s 0.5s forwards",
           }}
         >
           <p
@@ -124,17 +131,19 @@ paintOrder: "stroke fill",
           >
             {personalInfo.tagline}
           </p>
-        </div>
+        </motion.div>
 
         {/* CTAs */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.7 }}
           style={{
             display: "flex",
             gap: "16px",
             justifyContent: "center",
             flexWrap: "wrap",
-            opacity: 0,
-            animation: "fadeUp 0.8s 0.7s forwards",
           }}
         >
           <RainbowButton onClick={() => scrollTo("projects")}>
@@ -143,7 +152,7 @@ paintOrder: "stroke fill",
           <RainbowButton onClick={() => scrollTo("contact")}>
             Let's Work Together
           </RainbowButton>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

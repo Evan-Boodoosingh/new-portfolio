@@ -3,8 +3,7 @@
 // Odd index: video right, card slides in from right
 // once: false means animation replays when scrolling back
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 import { projects } from "../../config/portfolioConfig"
 import type { Project } from "../../types"
 
@@ -27,15 +26,8 @@ function handleLinkLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 }
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
-  const ref = useRef(null)
   const isEven = index % 2 === 0
   const tagStyle = TAG_COLORS[project.tagColor]
-
-  // once: false makes animation replay when scrolling back through
-  const isInView = useInView(ref, {
-    once: false,
-    margin: "0px 0px -80px 0px",
-  })
 
   // Direction based on layout — even slides from left, odd slides from right
   const xOffset = isEven ? -120 : 120
@@ -46,32 +38,23 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       x: xOffset,
       scale: 0.95,
     },
-  visible: {
-  opacity: 1,
-  x: 0,
-  scale: 1,
-  transition: {
-    duration: 0.6,
-    ease: "easeOut" as const,
-    delay: index * 0.05,
-  },
-},
-exit: {
-  opacity: 0,
-  x: xOffset,
-  scale: 0.95,
-  transition: {
-    duration: 0.4,
-    ease: "easeIn" as const,
-  },
-},
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+        delay: index * 0.05,
+      },
+    },
   }
 
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "exit"}
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.1 }}
       variants={variants}
       style={{
         background: "rgba(10,10,10,0.82)",

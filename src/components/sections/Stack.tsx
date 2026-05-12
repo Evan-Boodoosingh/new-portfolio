@@ -1,18 +1,14 @@
 // Stack section — tech skills organized by category
 // Each group animates in from the left with a stagger between groups
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 import { stack } from "../../config/portfolioConfig"
 import { Card } from "../ui/Card"
 import { SectionHeader } from "../ui/SectionHeader"
 
 export function Stack() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, {
-    once: false,
-    margin: "0px 0px -80px 0px",
-  })
+  const groupHidden = { opacity: 0, y: 40 }
+  const pillHidden = { opacity: 0, scale: 0.85, y: 10 }
 
   return (
     <section
@@ -28,9 +24,9 @@ export function Stack() {
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6, ease: "easeOut" as const }}
         >
           <Card>
@@ -46,8 +42,9 @@ export function Stack() {
               {stack.map((group, groupIndex) => (
                 <motion.div
                   key={group.title}
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+                  initial={groupHidden}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
                   transition={{
                     duration: 0.5,
                     ease: "easeOut" as const,
@@ -82,8 +79,9 @@ export function Stack() {
                     {group.items.map((item, itemIndex) => (
                       <motion.span
                         key={item.name}
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+                        initial={pillHidden}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
                         transition={{
                           duration: 0.3,
                           ease: "easeOut" as const,
