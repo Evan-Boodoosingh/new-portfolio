@@ -87,7 +87,7 @@ export function Contact() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "120px clamp(24px, 4vw, 40px) 140px",
+        padding: "120px clamp(24px, 4vw, 40px) 120px",
         boxSizing: "border-box",
       }}
       className="md:px-10 lg:px-40"
