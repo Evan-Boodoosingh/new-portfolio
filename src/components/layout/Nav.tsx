@@ -108,12 +108,12 @@ export function Nav() {
           onClick={() => setIsOpen(true)}
           style={{
             position: "fixed",
-            top: "15px",
-            right: "15px",
+            top: "10px",
+            right: "7px",
             zIndex: 250,
             background: "none",
             border: "none",
-            padding: "8px",
+            padding: "5px",
             display: "flex",
             flexDirection: "column",
             gap: "4px",
@@ -158,7 +158,7 @@ export function Nav() {
             borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
             display: "flex",
             flexDirection: "column",
-            padding: "40px",
+            padding: "10px",
             transform: isOpen ? "translateX(0)" : "translateX(100%)",
             transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
@@ -173,7 +173,7 @@ export function Nav() {
               color: "white",
               fontSize: "32px",
               cursor: "pointer",
-              marginBottom: "40px",
+              marginBottom: "50px",
               lineHeight: "1"
             }}
           >

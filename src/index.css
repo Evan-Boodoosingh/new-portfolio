@@ -12,13 +12,19 @@
 
 html {
   scroll-behavior: smooth;
+  /* FIX: Prevents the "click and drag" ghost space on mobile/tablet */
+  overflow-x: hidden; 
+  width: 100vw;
 }
 
 body {
   font-family: "DM Sans", sans-serif;
   background: #000;
   color: #f0f0f0;
+  /* FIX: Ensures the body stays exactly as wide as the screen */
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 /* ─── TYPOGRAPHY ────────────────────────────────────────────────── */
