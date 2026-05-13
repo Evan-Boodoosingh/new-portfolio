@@ -124,7 +124,7 @@ export function Contact() {
                 <input
                   type="hidden"
                   name="_next"
-                  value="https://portfolio-psi-peach-74.vercel.app"
+                  value="https://evanboodoosingh.vercel.app/"
                 />
                 <div>
                   <label style={labelStyle}>Your Name</label>
