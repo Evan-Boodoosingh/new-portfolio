@@ -30,7 +30,7 @@ export function Footer() {
         background: "rgba(255, 255, 255, 0.96)",
         borderTop: "4px solid transparent",
         borderImage: "linear-gradient(90deg,#ff2d78,#ff9500,#ffe600,#00e676,#00b0ff,#d500f9) 1",
-        padding: "40px",
+        padding: "10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
