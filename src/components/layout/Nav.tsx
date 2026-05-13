@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { personalInfo } from "../../config/portfolioConfig";
 import { RainbowButton } from "../ui/RainbowButton";
+import { X } from "lucide-react"; 
 
 export function Nav() {
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Handle responsive detection without Tailwind conflict
+  // Handle responsive detection for tablet/mobile
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 1024;
@@ -26,7 +27,7 @@ export function Nav() {
 
   return (
     <>
-      {/* --- DESKTOP NAV PILL (Hidden on Mobile/Tablet) --- */}
+      {/* --- DESKTOP NAV PILL --- */}
       {!isMobile && (
         <nav
           style={{
@@ -48,7 +49,6 @@ export function Nav() {
             whiteSpace: "nowrap",
           }}
         >
-          {/* Initials - EB */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
@@ -63,7 +63,6 @@ export function Nav() {
 
           <div style={{ width: "1px", height: "16px", background: "rgba(255,255,255,0.15)" }} />
 
-          {/* Desktop Links */}
           <ul style={{ display: "flex", gap: "16px", listStyle: "none", alignItems: "center", padding: 0, margin: 0 }}>
             {[
               { label: "About", id: "about" },
@@ -95,14 +94,13 @@ export function Nav() {
 
           <div style={{ width: "1px", height: "16px", background: "rgba(255,255,255,0.15)" }} />
 
-          {/* Resume Button */}
           <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer">
             <RainbowButton size="sm">Resume</RainbowButton>
           </a>
         </nav>
       )}
 
-      {/* --- MOBILE HAMBURGER ICON (Fixed Top Right) --- */}
+      {/* --- MOBILE HAMBURGER ICON --- */}
       {isMobile && (
         <button
           onClick={() => setIsOpen(true)}
@@ -120,7 +118,6 @@ export function Nav() {
             cursor: "pointer",
           }}
         >
-          {/* Individual lines with shadow for legibility against dynamic backgrounds */}
           <div style={{ width: "20px", height: "2px", background: "white", borderRadius: "2px", boxShadow: "0 2px 4px rgba(0,0,0,0.3)" }} />
           <div style={{ width: "20px", height: "2px", background: "white", borderRadius: "2px", boxShadow: "0 2px 4px rgba(0,0,0,0.3)" }} />
           <div style={{ width: "20px", height: "2px", background: "white", borderRadius: "2px", boxShadow: "0 2px 4px rgba(0,0,0,0.3)" }} />
@@ -145,40 +142,76 @@ export function Nav() {
         }}
         onClick={() => setIsOpen(false)}
       >
-        {/* The Actual Drawer Content */}
         <div
-          onClick={(e) => e.stopPropagation()} // Prevents closing when clicking menu items
+          onClick={(e) => e.stopPropagation()}
           style={{
             position: "absolute",
             top: 0,
             right: 0,
             width: "280px",
             height: "100%",
-            background: "#0f0e0d", // Dark cinematic background
+            background: "#0f0e0d",
             borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
             display: "flex",
             flexDirection: "column",
-            padding: "10px",
+            padding: "20px",
             transform: isOpen ? "translateX(0)" : "translateX(100%)",
             transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          {/* Close Button */}
-          <button
-            onClick={() => setIsOpen(false)}
-            style={{
-              alignSelf: "flex-end",
-              background: "none",
-              border: "none",
-              color: "white",
-              fontSize: "32px",
-              cursor: "pointer",
-              marginBottom: "50px",
-              lineHeight: "1"
-            }}
-          >
-            ×
-          </button>
+          {/* Header Container with Tightened Margins */}
+          <div style={{ 
+            display: "flex", 
+            justifyContent: "space-between", 
+            alignItems: "center", 
+            marginBottom: "24px", 
+            height: "40px" 
+          }}>
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setIsOpen(false);
+              }}
+              style={{ 
+                background: "none", 
+                border: "none", 
+                cursor: "pointer", 
+                padding: 0,
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <span 
+                className="rainbow-text" 
+                style={{ 
+                  fontFamily: "'Righteous', sans-serif", 
+                  fontSize: "24px", 
+                  letterSpacing: "2px",
+                  lineHeight: "1"
+                }}
+              >
+                {personalInfo.initials}
+              </span>
+            </button>
+
+            {/* Close Button with Visual Balancing Nudge */}
+            <button
+              onClick={() => setIsOpen(false)}
+              style={{
+                background: "none",
+                border: "none",
+                color: "white",
+                cursor: "pointer",
+                padding: "4px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transform: "translateY(-2px)" 
+              }}
+            >
+              <X size={28} strokeWidth={1.5} />
+            </button>
+          </div>
           
           <nav style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
             {[
@@ -207,7 +240,6 @@ export function Nav() {
               </button>
             ))}
             
-            {/* Mobile Resume CTA */}
             <div style={{ marginTop: "20px" }}>
               <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer">
                 <RainbowButton size="md">Resume</RainbowButton>
