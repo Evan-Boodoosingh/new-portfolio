@@ -237,7 +237,7 @@ export function Contact() {
                       onChange={handleChange}
                       style={{
                         ...inputStyle,
-                        resize: "vertical",
+                        resize: "none",
                         minHeight: "120px",
                       }}
                     />
