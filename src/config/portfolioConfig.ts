@@ -35,6 +35,18 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Evan-Boodoosingh/qd",
     category: "fullstack",
   },
+    {
+  id: "ash-tatts",
+  name: "Ash Tatts Miami",
+  description:
+    "Full-stack tattoo artist portfolio with headless CMS, live Instagram feed, serverless email API, and custom Sanity Studio for client content management.",
+  tags: ["React", "TypeScript", "Vite", "Sanity", "Tailwind", "Vercel"],
+  tagColor: "orange",
+ videoUrl: "https://www.loom.com/embed/923c1ae47c8e4779ba20a7c22ed7e749",
+  liveUrl: "https://ashtattsmiami.vercel.app/",
+  githubUrl: "https://github.com/Evan-Boodoosingh/ash-tatts",
+  category: "fullstack",
+},
   {
     id: "wtwr",
     name: "What To Wear",
@@ -58,20 +70,10 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Evan-Boodoosingh/bhpm",
     category: "frontend",
   },
-  {
-    id: "spots",
-    name: "Spots — Photo Sharing App",
-    description:
-      "Responsive photo-sharing app with real-time updates and RESTful API integration.",
-    tags: ["JavaScript", "REST API", "CSS3"],
-    tagColor: "orange",
-    videoUrl: "https://www.youtube.com/embed/_62pdopTAJY?si=Lb2Tdze25D2urVmu",
-    githubUrl: "https://github.com/Evan-Boodoosingh/se_project_spots",
-    category: "frontend",
-  },
+
   {
     id: "lost-pets",
-    name: "Lost Pets — Korra & GRiZ",
+    name: "FindMyDog",
     description:
       "Animated lost pet finder with vibrant UI and interactive search features.",
     tags: ["JavaScript", "CSS3", "HTML5"],
@@ -83,7 +85,7 @@ export const projects: Project[] = [
   },
   {
     id: "herik",
-    name: "Herik's 40th — One Piece",
+    name: "One Piece Birthday Site",
     description:
       "One Piece tribute birthday site with custom animations and themed UI.",
     tags: ["JavaScript", "CSS3", "HTML5"],
