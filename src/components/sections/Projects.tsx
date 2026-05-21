@@ -77,7 +77,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={variants}
       style={{
         background: "rgba(10,10,10,0.82)",
@@ -254,13 +254,12 @@ export function Projects() {
       }}
     >
       <div
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          width: "100%",
-          padding: "clamp(32px, 4vw, 60px)",
-        }}
-      >
+  style={{
+    maxWidth: "1100px",
+    margin: "0 auto",
+    width: "100%",
+  }}
+>
         <div style={{ marginBottom: "48px" }}>
           <p
             style={{

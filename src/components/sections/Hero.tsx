@@ -1,7 +1,6 @@
 // Hero section — centered, full viewport, no photo
 // Name enlarged and centered, available pill matches nav styling
 
-import { motion } from "framer-motion";
 import { personalInfo } from "../../config/portfolioConfig";
 import { RainbowButton } from "../ui/RainbowButton";
 
@@ -20,7 +19,7 @@ export function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "120px clamp(24px, 4vw, 40px) 80px",
+        padding: "clamp(80px, 15vh, 120px) clamp(16px, 4vw, 40px) clamp(60px, 10vh, 80px)",
         position: "relative",
         textAlign: "center",
         boxSizing: "border-box",
@@ -38,11 +37,7 @@ export function Hero() {
         }}
       >
         {/* Available for Work pill - matches nav styling */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+        <div
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -55,6 +50,8 @@ export function Hero() {
             border: "1px solid rgba(255,255,255,0.1)",
             boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
             marginBottom: "40px",
+            opacity: 0,
+            animation: "fadeUp 0.8s 0.1s forwards",
           }}
         >
           <div
@@ -79,15 +76,10 @@ export function Hero() {
           >
             Available for Work
           </span>
-        </motion.div>
+        </div>
 
-        {/* Name - large, centered, plain white version for comparison */}
-        <motion.h1
-          /* className="rainbow-text" */
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+        {/* Name - large, centered, plain white version */}
+        <h1
           style={{
             fontSize: "clamp(42px, 10vw, 92px)",
             letterSpacing: "2px",
@@ -98,19 +90,17 @@ export function Hero() {
             WebkitTextStroke: ".3px #555",
             paintOrder: "stroke fill",
             color: "#fff",
+            opacity: 0,
+            animation: "fadeUp 0.8s 0.3s forwards",
           }}
         >
           {personalInfo.name.split(" ")[0]}
           <br />
           {personalInfo.name.split(" ")[1]}
-        </motion.h1>
+        </h1>
 
         {/* Frosted card behind role and tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
+        <div
           style={{
             background: "rgba(15,15,15,0.75)",
             backdropFilter: "blur(24px)",
@@ -127,6 +117,8 @@ export function Hero() {
             justifyContent: "center",
             marginLeft: "auto",
             marginRight: "auto",
+            opacity: 0,
+            animation: "fadeUp 0.8s 0.5s forwards",
           }}
         >
           <p
@@ -152,14 +144,10 @@ export function Hero() {
           >
             {personalInfo.tagline}
           </p>
-        </motion.div>
+        </div>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.7 }}
+        <div
           style={{
             display: "flex",
             gap: "16px",
@@ -169,6 +157,8 @@ export function Hero() {
             width: "100%",
             maxWidth: "520px",
             margin: "0 auto",
+            opacity: 0,
+            animation: "fadeUp 0.8s 0.7s forwards",
           }}
           className="flex-col sm:flex-row gap-4 sm:gap-16"
         >
@@ -178,7 +168,7 @@ export function Hero() {
           <RainbowButton onClick={() => scrollTo("contact")}>
             Let's Work Together
           </RainbowButton>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
