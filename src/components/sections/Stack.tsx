@@ -28,7 +28,7 @@ export function Stack() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, ease: "easeOut" as const }}
         >
           <Card>
@@ -46,7 +46,7 @@ export function Stack() {
                   key={group.title}
                   initial={groupHidden}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{
                     duration: 0.5,
                     ease: "easeOut" as const,
@@ -91,7 +91,7 @@ export function Stack() {
                         key={item.name}
                         initial={pillHidden}
                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                        viewport={{ once: false, amount: 0.2 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         transition={{
                           duration: 0.3,
                           ease: "easeOut" as const,

@@ -19,12 +19,13 @@ export function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "clamp(80px, 15vh, 120px) clamp(16px, 4vw, 40px) clamp(60px, 10vh, 80px)",
+       paddingLeft: "clamp(16px, 4vw, 40px)",
+paddingRight: "clamp(16px, 4vw, 40px)",
         position: "relative",
         textAlign: "center",
         boxSizing: "border-box",
       }}
-      className="md:px-10 lg:px-40"
+     className="pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-20 md:px-10 lg:px-40"
     >
       <div
         style={{

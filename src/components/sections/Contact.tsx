@@ -80,7 +80,7 @@ function handleMouseLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 
 export function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "0px 0px -80px 0px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
 
   const [form, setForm] = useState({
     name: "",
