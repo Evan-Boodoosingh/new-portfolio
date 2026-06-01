@@ -1,41 +1,17 @@
-// Projects section — directional scroll animations per card
-// Even index: video left, card slides in from left
-// Odd index: video right, card slides in from right
-// once: false means animation replays when scrolling back
+// Projects section — directional slide animations per card
+// Lazy loaded iframes for performance — videos only load when scrolled near
+// Even cards slide from left, odd cards slide from right
 
 import { motion } from "framer-motion";
 import { projects } from "../../config/portfolioConfig";
 import type { Project } from "../../types";
 
-const TAG_COLORS: Record<
-  string,
-  { bg: string; color: string; border: string }
-> = {
-  pink: {
-    bg: "rgba(255,45,120,0.12)",
-    color: "#ff2d78",
-    border: "rgba(255,45,120,0.25)",
-  },
-  blue: {
-    bg: "rgba(0,176,255,0.12)",
-    color: "#00b0ff",
-    border: "rgba(0,176,255,0.25)",
-  },
-  green: {
-    bg: "rgba(0,200,100,0.12)",
-    color: "#00e676",
-    border: "rgba(0,200,100,0.25)",
-  },
-  purple: {
-    bg: "rgba(213,0,249,0.12)",
-    color: "#d500f9",
-    border: "rgba(213,0,249,0.25)",
-  },
-  orange: {
-    bg: "rgba(255,149,0,0.12)",
-    color: "#ff9500",
-    border: "rgba(255,149,0,0.25)",
-  },
+const TAG_COLORS: Record<string, { bg: string; color: string; border: string }> = {
+  pink:   { bg: "rgba(255,45,120,0.12)",  color: "#ff2d78", border: "rgba(255,45,120,0.25)"  },
+  blue:   { bg: "rgba(0,176,255,0.12)",   color: "#00b0ff", border: "rgba(0,176,255,0.25)"   },
+  green:  { bg: "rgba(0,200,100,0.12)",   color: "#00e676", border: "rgba(0,200,100,0.25)"   },
+  purple: { bg: "rgba(213,0,249,0.12)",   color: "#d500f9", border: "rgba(213,0,249,0.25)"   },
+  orange: { bg: "rgba(255,149,0,0.12)",   color: "#ff9500", border: "rgba(255,149,0,0.25)"   },
 };
 
 function handleLinkEnter(e: React.MouseEvent<HTMLAnchorElement>) {
@@ -51,16 +27,10 @@ function handleLinkLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const isEven = index % 2 === 0;
   const tagStyle = TAG_COLORS[project.tagColor];
-
-  // Direction based on layout — even slides from left, odd slides from right
-  const xOffset = isEven ? -120 : 120;
+  const xOffset = isEven ? -80 : 80;
 
   const variants = {
-    hidden: {
-      opacity: 0,
-      x: xOffset,
-      scale: 0.95,
-    },
+    hidden: { opacity: 0, x: xOffset, scale: 0.97 },
     visible: {
       opacity: 1,
       x: 0,
@@ -68,7 +38,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       transition: {
         duration: 0.6,
         ease: "easeOut" as const,
-        delay: index * 0.05,
+        delay: 0.1,
       },
     },
   };
@@ -77,7 +47,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={variants}
       style={{
         background: "rgba(10,10,10,0.82)",
@@ -91,11 +61,12 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       }}
       className="grid-cols-1 md:grid-cols-2"
     >
-      {/* Video panel */}
+      {/* Video panel — lazy loaded so it only fetches when scrolled near */}
       <div className={isEven ? "order-0 md:order-0" : "order-0 md:order-1"}>
         {project.videoUrl ? (
           <iframe
             src={project.videoUrl}
+            loading="lazy"
             style={{
               width: "100%",
               height: "100%",
@@ -112,8 +83,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
               width: "100%",
               height: "100%",
               minHeight: "300px",
-              background:
-                "linear-gradient(135deg,rgba(255,45,120,0.08),rgba(0,176,255,0.08))",
+              background: "linear-gradient(135deg,rgba(255,45,120,0.08),rgba(0,176,255,0.08))",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -254,12 +224,12 @@ export function Projects() {
       }}
     >
       <div
-  style={{
-    maxWidth: "1100px",
-    margin: "0 auto",
-    width: "100%",
-  }}
->
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          width: "100%",
+        }}
+      >
         <div style={{ marginBottom: "48px" }}>
           <p
             style={{
