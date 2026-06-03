@@ -35,13 +35,25 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Evan-Boodoosingh/qd",
     category: "fullstack",
   },
+  {
+  id: "prestige-lawn",
+  name: "Prestige Lawn & Landscape",
+  description:
+    "Premium lawn care website template with config-driven architecture, before/after drag slider gallery, infinite scroll review carousel, and texture-based design system built for client handoff with Sanity CMS.",
+  tags: ["React", "TypeScript", "Tailwind", "Framer Motion", "Vite", "Vercel"],
+  tagColor: "orange",
+  videoUrl: "https://www.loom.com/embed/f6b4ffa66d42400c9f2044c5e9325a8f",
+  liveUrl: "https://prestige-lawn.vercel.app/",
+  githubUrl: "https://github.com/Evan-Boodoosingh/prestige-lawn",
+  category: "fullstack",
+},
     {
   id: "ash-tatts",
   name: "Ash Tatts Miami",
   description:
     "Full-stack tattoo artist portfolio with headless CMS, live Instagram feed, serverless email API, and custom Sanity Studio for client content management.",
   tags: ["React", "TypeScript", "Vite", "Sanity", "Tailwind", "Vercel"],
-  tagColor: "orange",
+  tagColor: "blue",
  videoUrl: "https://www.loom.com/embed/923c1ae47c8e4779ba20a7c22ed7e749",
   liveUrl: "https://ashtattsmiami.vercel.app/",
   githubUrl: "https://github.com/Evan-Boodoosingh/ash-tatts",
@@ -53,7 +65,7 @@ export const projects: Project[] = [
     description:
       "Weather-based clothing recommendation app with JWT auth and GCP deployment.",
    tags: ["React", "Node.js", "Express", "MongoDB", "GCP", "Nginx"],
-    tagColor: "blue",
+    tagColor: "orange",
     videoUrl: "https://www.loom.com/embed/99eab244e924443a9f59934b2480be95",
     githubUrl: "https://github.com/Evan-Boodoosingh/se_project_react",
     category: "fullstack",
@@ -83,18 +95,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Evan-Boodoosingh/lost-dog",
     category: "frontend",
   },
-  {
-    id: "herik",
-    name: "One Piece Birthday Site",
-    description:
-      "One Piece tribute birthday site with custom animations and themed UI.",
-    tags: ["JavaScript", "CSS3", "HTML5"],
-    tagColor: "orange",
-    videoUrl: "https://www.loom.com/embed/ee9bb11e2d3b45dd84eec3d18a82bd6a",
-        liveUrl: "https://evan-boodoosingh.github.io/herik-birthday/",
-    githubUrl: "https://github.com/Evan-Boodoosingh/herik-birthday",
-    category: "frontend",
-  },
+  
   //   {
   //     id: "triple-peaks",
   //     name: "Triple Peaks Coffee Shop",
