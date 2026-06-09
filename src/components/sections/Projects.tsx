@@ -1,6 +1,5 @@
-// Projects section — directional slide animations per card
-// Lazy loaded iframes for performance — videos only load when scrolled near
-// Even cards slide from left, odd cards slide from right
+// Projects section — single animation on section wrapper
+// One observer, everything animates in together — no per-card overhead on mobile
 
 import { motion } from "framer-motion";
 import { projects } from "../../config/portfolioConfig";
@@ -27,28 +26,9 @@ function handleLinkLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const isEven = index % 2 === 0;
   const tagStyle = TAG_COLORS[project.tagColor];
-  const xOffset = isEven ? -80 : 80;
-
-  const variants = {
-    hidden: { opacity: 0, x: xOffset, scale: 0.97 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-        delay: 0.1,
-      },
-    },
-  };
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      variants={variants}
+    <div
       style={{
         background: "rgba(10,10,10,0.82)",
         backdropFilter: "blur(20px)",
@@ -61,19 +41,12 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       }}
       className="grid-cols-1 md:grid-cols-2"
     >
-      {/* Video panel — lazy loaded so it only fetches when scrolled near */}
       <div className={isEven ? "order-0 md:order-0" : "order-0 md:order-1"}>
         {project.videoUrl ? (
           <iframe
             src={project.videoUrl}
             loading="lazy"
-            style={{
-              width: "100%",
-              height: "100%",
-              minHeight: "300px",
-              border: "none",
-              display: "block",
-            }}
+            style={{ width: "100%", height: "100%", minHeight: "300px", border: "none", display: "block" }}
             allowFullScreen
             title={project.name}
           />
@@ -98,7 +71,6 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         )}
       </div>
 
-      {/* Info panel */}
       <div
         className={isEven ? "order-1 md:order-1" : "order-1 md:order-0"}
         style={{
@@ -131,14 +103,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           {project.description}
         </p>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "8px",
-            flexWrap: "wrap",
-            marginBottom: "28px",
-          }}
-        >
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "28px" }}>
           {project.tags.map((tag) => (
             <span
               key={tag}
@@ -208,7 +173,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -223,12 +188,12 @@ export function Projects() {
         boxSizing: "border-box",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          width: "100%",
-        }}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.6, ease: "easeOut" as const }}
+        style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}
       >
         <div style={{ marginBottom: "48px" }}>
           <p
@@ -262,7 +227,7 @@ export function Projects() {
         {projects.map((project, index) => (
           <ProjectRow key={project.id} project={project} index={index} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
